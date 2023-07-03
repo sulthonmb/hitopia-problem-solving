@@ -27,32 +27,30 @@ function balancedBracket(brackets) {
     }
 
     let left = 0
-    let right = arrBrackets.length-1
-
-    while (left < right && left !=right) {
-        if (checkBrackets(arrBrackets[left], arrBrackets[right])) {
+    let temp = []
+    while (left <= arrBrackets.length-1) {
+        if (temp.length<=0) {
+            temp.push(arrBrackets[left])
             left++
-            right--
             continue
         }
 
-        if (!checkBrackets(arrBrackets[left], arrBrackets[right])) {
-            if (checkBrackets(arrBrackets[right-1], arrBrackets[right])) {
-                right = right - 2
-                continue
-            } else if (checkBrackets(arrBrackets[left+1], arrBrackets[left])) {
-                left = left + 2
-                continue
-            } else {
-                return 'NO'
-            }
+        if (checkBrackets(temp[temp.length-1], arrBrackets[left])) {
+            temp.pop()
+        } else {
+            temp.push(arrBrackets[left])
         }
+        left++
     }
 
-    return 'YES'
-
+    if (temp.length > 0) {
+        return 'NO'
+    } else {
+        return 'YES'
+    }
 }
 
 console.log(balancedBracket('{[()]}'))
 console.log(balancedBracket('{[(])}'))
 console.log(balancedBracket('{(([]))[][]}'))
+console.log(balancedBracket('[()]{}{[()()]()}'))
