@@ -61,3 +61,6 @@ function highestPalindrome(string, k) {
 }
 
 console.log(highestPalindrome('3943', 1))
+console.log(highestPalindrome('3943', 0))
+console.log(highestPalindrome('3943234', 3))
+console.log(highestPalindrome('3943234333', 6))
